@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { StyleSheet, Image } from "react-native";
 
-import bgSrc from "../../assets/images/wallpaper.png";
+import bgSrc from "../../../assets/images/wallpaper.png";
 
 export default class Wallpaper extends Component {
   render() {

@@ -13,9 +13,9 @@ import UserInput from "./UserInput";
 import ButtonSubmit from "./ButtonSubmit";
 import SignupSection from "./SignupSection";
 
-import usernameImg from "../../assets/images/username.png";
-import passwordImg from "../../assets/images/password.png";
-import eyeImg from "../../assets/images/eye_black.png";
+import usernameImg from "../../../assets/images/username.png";
+import passwordImg from "../../../assets/images/password.png";
+import eyeImg from "../../../assets/images/eye_black.png";
 
 export default class Form extends Component {
   constructor(props) {

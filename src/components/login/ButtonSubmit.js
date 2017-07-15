@@ -10,9 +10,8 @@ import {
   Alert,
   View
 } from "react-native";
-import { Actions, ActionConst } from "react-native-router-flux";
 
-import spinner from "../../assets/images/loading.gif";
+import spinner from "../../../assets/images/loading.gif";
 
 const DEVICE_WIDTH = Dimensions.get("window").width;
 const DEVICE_HEIGHT = Dimensions.get("window").height;
@@ -31,7 +30,7 @@ export default class ButtonSubmit extends Component {
     this._onPress = this._onPress.bind(this);
   }
 
-  _onPress() {
+  _onPress(navigation) {
     if (this.state.isLoading) return;
 
     this.setState({ isLoading: true });
@@ -46,7 +45,7 @@ export default class ButtonSubmit extends Component {
     }, 2000);
 
     setTimeout(() => {
-      Actions.secondScreen();
+      navigation.navigate("home");
       this.setState({ isLoading: false });
       this.buttonAnimated.setValue(0);
       this.growAnimated.setValue(0);
@@ -76,7 +75,9 @@ export default class ButtonSubmit extends Component {
         <Animated.View style={{ width: changeWidth }}>
           <TouchableOpacity
             style={styles.button}
-            onPress={this._onPress}
+            onPress={() => {
+              this._onPress(this.props.navigation);
+            }}
             activeOpacity={1}
           >
             {this.state.isLoading

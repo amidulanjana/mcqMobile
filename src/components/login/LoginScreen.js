@@ -6,13 +6,17 @@ import ButtonSubmit from "./ButtonSubmit";
 import SignupSection from "./SignupSection";
 
 export default class LoginScreen extends Component {
+  static navigationOptions = {
+    header: null
+  };
+
   render() {
     return (
       <Wallpaper>
         <Logo />
         <Form />
         <SignupSection />
-        <ButtonSubmit />
+        <ButtonSubmit navigation={this.props.navigation} />
       </Wallpaper>
     );
   }
