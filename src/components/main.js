@@ -1,14 +1,25 @@
 import React, { Component } from "react";
 
-import { View, Text, StyleSheet, Platform } from "react-native";
+import { View, StyleSheet, Platform } from "react-native";
 import { StackNavigator, TabNavigator } from "react-navigation";
-import Icon from "react-native-vector-icons/FontAwesome";
+import {
+  Container,
+  Header,
+  Item,
+  Input,
+  Icon,
+  Button,
+  Text
+} from "native-base";
+// import Icon from "react-native-vector-icons/FontAwesome";
 
 import LoginScreen from "./login/LoginScreen";
 import SecondScreen from "./SecondScreen";
 import HomeScreen from "./home/HomeScreen";
 import ProfileScreen from "./home/ProfileScreen";
 import NotificationScreen from "./home/NotificationScreen";
+import SearchScreen from "./home/SearchScreen";
+import CommentScreen from "./home/Wall/CommentScreen";
 
 class Main extends Component {
   render() {
@@ -19,6 +30,7 @@ class Main extends Component {
           screen: TabNavigator(
             {
               home: { screen: HomeScreen },
+              Search: { screen: SearchScreen },
               profile: { screen: ProfileScreen },
               Notification: { screen: NotificationScreen }
             },
@@ -30,11 +42,11 @@ class Main extends Component {
               }
             }
           )
-        }
+        },
+        comment: { screen: CommentScreen }
       },
       {
         navigationOptions: ({ navigation }) => ({
-          headerLeft: null,
           headerStyle: {
             marginTop: Platform.OS === "android" ? 24 : 0
           }

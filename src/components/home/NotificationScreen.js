@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import { Icon } from "native-base";
 
 class Notification extends Component {
   static navigationOptions = {
@@ -9,7 +9,7 @@ class Notification extends Component {
       return (
         <Icon
           style={{ color: "black" }}
-          name="globe"
+          name={focused ? "ios-notifications" : "ios-notifications-outline"}
           size={24}
           style={{ color: tintColor }}
         />

@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import { View, Text, Platform } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import { View, Platform } from "react-native";
+import { Container, Content, Icon, Card } from "native-base";
+
+import Post from "./Wall/Post";
 
 class Home extends Component {
   static navigationOptions = {
     title: "Home",
+    headerLeft: null,
     tabBarIcon: ({ tintColor, focused }) => {
       return (
         <Icon
           style={{ color: "black" }}
-          name="home"
+          name={focused ? "ios-home" : "ios-home-outline"}
           size={24}
           style={{ color: tintColor }}
         />
@@ -19,10 +22,16 @@ class Home extends Component {
 
   render() {
     return (
-      <View>
-        <Text>Walll</Text>
-        <Icon style={{ color: "black" }} name="tags" size={18} />
-      </View>
+      <Container>
+        <Content padder>
+          <Card>
+            <Post navigation={this.props.navigation} />
+          </Card>
+          <Post />
+          <Post />
+          <Post />
+        </Content>
+      </Container>
     );
   }
 }

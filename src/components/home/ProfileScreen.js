@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import { View } from "react-native";
+import Cover from "./Profile/Cover";
+import UserInfo from "./Profile/UserInfo";
+import { Content, Container, Button, Text, Icon } from "native-base";
 
 class Profile extends Component {
   static navigationOptions = {
@@ -9,7 +11,7 @@ class Profile extends Component {
       return (
         <Icon
           style={{ color: "black" }}
-          name="user"
+          name={focused ? "ios-person" : "ios-person-outline"}
           size={24}
           style={{ color: tintColor }}
         />
@@ -19,9 +21,12 @@ class Profile extends Component {
 
   render() {
     return (
-      <View>
-        <Text>Profile1</Text>
-      </View>
+      <Container>
+        <Content padder>
+          <Cover />
+          <UserInfo />
+        </Content>
+      </Container>
     );
   }
 }

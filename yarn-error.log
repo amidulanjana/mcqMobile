@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add react-navigation
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add native-base --save
 
 PATH: 
-  C:\Program Files\cmder\bin;C:\Program Files\cmder\vendor\conemu-maximus5\ConEmu\Scripts;C:\Program Files\cmder\vendor\conemu-maximus5;C:\Program Files\cmder\vendor\conemu-maximus5\ConEmu;C:\Python36\Scripts\;C:\Python36\;C:\Python27\;C:\Python27\Scripts;C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\spark\bin;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\sbt\bin;C:\Program Files\Java\jdk1.8.0_131;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Users\Amila\AppData\Local\Android\sdk\tools;C:\Program Files\Java\jdk1.8.0_131\bin;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin;C:\Program Files (x86)\scala\bin;C:\Program Files\apache\\bin;C:\Users\Amila\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Amila\AppData\Local\Programs\Python\Python36-32\;C:\Users\Amila\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\youtube-dl;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Program Files\Heroku\bin;C:\Users\Amila\AppData\Local\Android\sdk\platform-tools;C:\Users\Amila\AppData\Roaming\npm;C:\Users\Amila\AppData\Local\Yarn\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\share\vim\vim74;C:\Program Files\cmder\
+  C:\Python36\Scripts\;C:\Python36\;C:\Python27\;C:\Python27\Scripts;C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\spark\bin;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\sbt\bin;C:\Program Files\Java\jdk1.8.0_131;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Users\Amila\AppData\Local\Android\sdk\tools;C:\Program Files\Java\jdk1.8.0_131\bin;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin;C:\Program Files (x86)\scala\bin;C:\Program Files\apache\\bin;C:\Users\Amila\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Amila\AppData\Local\Programs\Python\Python36-32\;C:\Users\Amila\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\youtube-dl;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Program Files\Heroku\bin;C:\Users\Amila\AppData\Local\Android\sdk\platform-tools;C:\Users\Amila\AppData\Roaming\npm;C:\Users\Amila\AppData\Local\Yarn\bin
 
 Yarn version: 
   0.27.5
@@ -27,7 +27,8 @@ npm manifest:
       "react": "16.0.0-alpha.12",
       "react-native": "https://github.com/expo/react-native/archive/sdk-18.0.1.tar.gz",
       "react-native-router-flux": "^4.0.0-beta.9",
-      "react-native-vector-icons": "^4.2.0"
+      "react-native-vector-icons": "^4.2.0",
+      "react-navigation": "^1.0.0-beta.11"
     }
   }
 

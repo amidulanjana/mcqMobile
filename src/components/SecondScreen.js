@@ -7,7 +7,6 @@ import {
   Animated,
   Easing
 } from "react-native";
-import { Actions, ActionConst } from "react-native-router-flux";
 
 import arrowImg from "../../assets/images/left-arrow.png";
 
@@ -36,9 +35,7 @@ export default class SecondScreen extends Component {
       easing: Easing.linear
     }).start();
 
-    setTimeout(() => {
-      Actions.pop();
-    }, 500);
+    setTimeout(() => {}, 500);
   }
 
   render() {
