@@ -20,6 +20,7 @@ import ProfileScreen from "./home/ProfileScreen";
 import NotificationScreen from "./home/NotificationScreen";
 import SearchScreen from "./home/SearchScreen";
 import CommentScreen from "./home/Wall/CommentScreen";
+import QuestionPaperScreen from "./home/Wall/QuestionPaperScreen";
 
 class Main extends Component {
   render() {
@@ -43,7 +44,8 @@ class Main extends Component {
             }
           )
         },
-        comment: { screen: CommentScreen }
+        comment: { screen: CommentScreen },
+        questionPaper: { screen: QuestionPaperScreen }
       },
       {
         navigationOptions: ({ navigation }) => ({

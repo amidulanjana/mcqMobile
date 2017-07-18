@@ -22,6 +22,12 @@ class Post extends Component {
     }
   }
 
+  renderQuestionPaperScreen(navigation) {
+    if (navigation) {
+      navigation.navigate("questionPaper");
+    }
+  }
+
   render() {
     return (
       <Content>
@@ -64,7 +70,12 @@ class Post extends Component {
             </Button>
           </Body>
           <Right>
-            <Button transparent>
+            <Button
+              transparent
+              onPress={() => {
+                this.renderQuestionPaperScreen(this.props.navigation);
+              }}
+            >
               <Icon active name="ios-paper" />
               <Text> Paper</Text>
             </Button>
