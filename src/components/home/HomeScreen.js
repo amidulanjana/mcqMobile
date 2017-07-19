@@ -24,12 +24,13 @@ class Home extends Component {
     return (
       <Container>
         <Content padder>
-          <Card>
-            <Post navigation={this.props.navigation} />
-          </Card>
-          <Post />
-          <Post />
-          <Post />
+          <Post
+            navigation={this.props.navigation}
+            imageUrl="http://1.bp.blogspot.com/-Pvn9pBKCmr8/VKQTryg3ZNI/AAAAAAAAAn0/4PPL1BYPURQ/s1600/mhcet.png"
+          />
+          <Post imageUrl="https://thetab.com/blogs.dir/9/files/2013/05/exam-paper.jpg" />
+          <Post imageUrl="http://cdn.xl.thumbs.canstockphoto.com/canstock38435762.jpg" />
+          <Post imageUrl="http://1.bp.blogspot.com/-Pvn9pBKCmr8/VKQTryg3ZNI/AAAAAAAAAn0/4PPL1BYPURQ/s1600/mhcet.png" />
         </Content>
       </Container>
     );

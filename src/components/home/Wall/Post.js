@@ -46,7 +46,7 @@ class Post extends Component {
         <CardItem cardBody>
           <Image
             source={{
-              uri: "https://thetab.com/blogs.dir/9/files/2013/05/exam-paper.jpg"
+              uri: this.props.imageUrl
             }}
             style={{ height: 200, width: null, flex: 1 }}
           />

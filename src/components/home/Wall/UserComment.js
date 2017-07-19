@@ -24,7 +24,9 @@ export default class UserComment extends Component {
           <Body>
             <Text>Kumar Pratik</Text>
 
-            <Text note>Doing what you like will always keep you happy . .</Text>
+            <Text note>
+              {this.props.comment}
+            </Text>
           </Body>
           <Right>
             <Text note>3:43 pm</Text>
