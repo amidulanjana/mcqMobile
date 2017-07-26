@@ -6,10 +6,13 @@ import {
   View,
   ActivityIndicator,
   TouchableOpacity,
+  TextInput,
   Image
 } from "react-native";
+import { connect } from "react-redux";
+import { emailChanged, passwordChanged } from "../../actions";
 
-import UserInput from "./UserInput";
+// import UserInput from "./UserInput";
 import ButtonSubmit from "./ButtonSubmit";
 import SignupSection from "./SignupSection";
 
@@ -17,7 +20,7 @@ import usernameImg from "../../../assets/images/username.png";
 import passwordImg from "../../../assets/images/password.png";
 import eyeImg from "../../../assets/images/eye_black.png";
 
-export default class Form extends Component {
+class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,24 +36,49 @@ export default class Form extends Component {
       : this.setState({ showPass: true, press: false });
   }
 
+  onEmailChange(text) {
+    console.log(text);
+    this.props.emailChanged(text);
+  }
+
+  onPasswordChange(text) {
+    console.log(text);
+    this.props.passwordChanged(text);
+  }
+
   render() {
     return (
-      <KeyboardAvoidingView behavior="padding" style={styles.container}>
-        <UserInput
-          source={usernameImg}
-          placeholder="Username"
-          autoCapitalize={"none"}
-          returnKeyType={"done"}
-          autoCorrect={false}
-        />
-        <UserInput
-          source={passwordImg}
-          secureTextEntry={this.state.showPass}
-          placeholder="Password"
-          returnKeyType={"done"}
-          autoCapitalize={"none"}
-          autoCorrect={false}
-        />
+      <View style={styles.container}>
+        <View style={styles.inputWrapper}>
+          <Image source={usernameImg} style={styles.inlineImg} />
+          <TextInput
+            style={styles.input}
+            placeholder="email"
+            autoCorrect={false}
+            autoCapitalize="none"
+            returnKeyType="done"
+            placeholderTextColor="white"
+            underlineColorAndroid="transparent"
+            onChangeText={this.onEmailChange.bind(this)}
+            value={this.props.email}
+          />
+        </View>
+
+        <View style={styles.inputWrapper}>
+          <Image source={passwordImg} style={styles.inlineImg} />
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            secureTextEntry={this.state.showPass}
+            autoCorrect={false}
+            autoCapitalize="none"
+            returnKeyType="done"
+            placeholderTextColor="white"
+            underlineColorAndroid="transparent"
+            onChangeText={this.onPasswordChange.bind(this)}
+            value={this.props.password}
+          />
+        </View>
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.btnEye}
@@ -58,7 +86,7 @@ export default class Form extends Component {
         >
           <Image source={eyeImg} style={styles.iconEye} />
         </TouchableOpacity>
-      </KeyboardAvoidingView>
+      </View>
     );
   }
 }
@@ -71,6 +99,26 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center"
   },
+  input: {
+    backgroundColor: "rgba(255, 255, 255, 0.4)",
+    width: DEVICE_WIDTH - 40,
+    height: 40,
+    marginHorizontal: 20,
+    paddingLeft: 45,
+    borderRadius: 20,
+    color: "#ffffff"
+  },
+  inputWrapper: {
+    flex: 1
+  },
+  inlineImg: {
+    position: "absolute",
+    zIndex: 99,
+    width: 22,
+    height: 22,
+    left: 35,
+    top: 9
+  },
   btnEye: {
     position: "absolute",
     top: 65,
@@ -82,3 +130,15 @@ const styles = StyleSheet.create({
     tintColor: "rgba(0,0,0,0.2)"
   }
 });
+
+const mapStateToProps = state => {
+  console.log(state.auth);
+  return {
+    email: state.auth.email,
+    password: state.auth.password
+  };
+};
+
+export default connect(mapStateToProps, { emailChanged, passwordChanged })(
+  Form
+);

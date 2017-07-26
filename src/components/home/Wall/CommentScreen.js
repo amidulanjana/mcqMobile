@@ -5,22 +5,9 @@ import {
   TextInput,
   KeyboardAvoidingView,
   ScrollView,
-  Text,
   Platform
 } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import {
-  Icon,
-  Container,
-  Content,
-  Card,
-  CardItem,
-  Footer,
-  Button,
-  FooterTab,
-  Item,
-  Input
-} from "native-base";
+import { Icon, Button, Item, Input } from "native-base";
 
 import Post from "../Wall/Post";
 import UserComment from "./UserComment";
@@ -52,19 +39,7 @@ class CommentScreen extends Component {
           <UserComment comment="Well Done" />
         </ScrollView>
 
-        <View
-          style={{
-            backgroundColor: "#fff",
-            marginLeft: 5,
-            marginRight: 5,
-            borderTopWidth: 0,
-            borderWidth: 1,
-            borderRadius: 2,
-            borderColor: "#ddd"
-          }}
-        >
-          {/* <TextInput placeholder="Text" style={{ height: 40 }} /> */}
-
+        <View style={styles.commentInputView}>
           <Item
             rounded
             style={{
@@ -93,6 +68,15 @@ class CommentScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  commentInputView: {
+    backgroundColor: "#fff",
+    marginLeft: 5,
+    marginRight: 5,
+    borderTopWidth: 0,
+    borderWidth: 1,
+    borderRadius: 2,
+    borderColor: "#ddd"
+  },
   commentInput: {
     height: 40,
     top: 3,

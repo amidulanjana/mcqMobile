@@ -3,13 +3,18 @@ import Dimensions from "Dimensions";
 import {
   StyleSheet,
   TouchableOpacity,
-  Text,
   Animated,
   Easing,
   Image,
   Alert,
-  View
+  View,
+  Text,
+  Keyboard
 } from "react-native";
+import dismissKeyboard from "dismissKeyboard";
+import { Toast, Root } from "native-base";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions";
 
 import spinner from "../../../assets/images/loading.gif";
 
@@ -17,7 +22,7 @@ const DEVICE_WIDTH = Dimensions.get("window").width;
 const DEVICE_HEIGHT = Dimensions.get("window").height;
 const MARGIN = 40;
 
-export default class ButtonSubmit extends Component {
+class ButtonSubmit extends Component {
   constructor() {
     super();
 
@@ -30,8 +35,13 @@ export default class ButtonSubmit extends Component {
     this._onPress = this._onPress.bind(this);
   }
 
-  _onPress(navigation) {
+  async _onPress(navigation) {
+    dismissKeyboard();
     if (this.state.isLoading) return;
+
+    const { email, password } = this.props;
+
+    let user = await this.props.loginUser({ email, password });
 
     this.setState({ isLoading: true });
     Animated.timing(this.buttonAnimated, {
@@ -39,17 +49,38 @@ export default class ButtonSubmit extends Component {
       duration: 200,
       easing: Easing.linear
     }).start();
+    // make this true
+    if (this.props.error == true) {
+      setTimeout(() => {
+        //alert("Authenication Failed");
+        debugger;
+        this._toastShow();
+        this.setState({ isLoading: false });
+        this.buttonAnimated.setValue(0);
+        this.growAnimated.setValue(0);
+      }, 2300);
+    } else {
+      setTimeout(() => {
+        this._onGrow();
+      }, 2000);
 
-    setTimeout(() => {
-      this._onGrow();
-    }, 2000);
+      setTimeout(() => {
+        navigation.navigate("home");
+        this.setState({ isLoading: false });
+        this.buttonAnimated.setValue(0);
+        this.growAnimated.setValue(0);
+      }, 2300);
+    }
+  }
 
-    setTimeout(() => {
-      navigation.navigate("home");
-      this.setState({ isLoading: false });
-      this.buttonAnimated.setValue(0);
-      this.growAnimated.setValue(0);
-    }, 2300);
+  _toastShow() {
+    Toast.show({
+      text: "Authenication Failed!",
+      position: "bottom",
+      buttonText: "Okay",
+      type: "danger",
+      duration: 3000
+    });
   }
 
   _onGrow() {
@@ -128,3 +159,13 @@ const styles = StyleSheet.create({
     height: 24
   }
 });
+
+const mapStateToProps = state => {
+  return {
+    email: state.auth.email,
+    password: state.auth.password,
+    error: state.auth.error
+  };
+};
+
+export default connect(mapStateToProps, { loginUser })(ButtonSubmit);

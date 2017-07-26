@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import { View, StyleSheet, Platform } from "react-native";
 import { StackNavigator, TabNavigator } from "react-navigation";
 import {
@@ -11,7 +10,6 @@ import {
   Button,
   Text
 } from "native-base";
-// import Icon from "react-native-vector-icons/FontAwesome";
 
 import LoginScreen from "./login/LoginScreen";
 import SecondScreen from "./SecondScreen";
@@ -21,6 +19,7 @@ import NotificationScreen from "./home/NotificationScreen";
 import SearchScreen from "./home/SearchScreen";
 import CommentScreen from "./home/Wall/CommentScreen";
 import QuestionPaperScreen from "./home/Wall/QuestionPaperScreen";
+import Test from "./test";
 
 class Main extends Component {
   render() {
