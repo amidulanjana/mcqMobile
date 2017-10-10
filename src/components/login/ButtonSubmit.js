@@ -50,10 +50,9 @@ class ButtonSubmit extends Component {
       easing: Easing.linear
     }).start();
     // make this true
-    if (this.props.error == true) {
+    //for dev purpose
+    if (this.props.error == false) {
       setTimeout(() => {
-        //alert("Authenication Failed");
-        debugger;
         this._toastShow();
         this.setState({ isLoading: false });
         this.buttonAnimated.setValue(0);
@@ -111,9 +110,11 @@ class ButtonSubmit extends Component {
             }}
             activeOpacity={1}
           >
-            {this.state.isLoading
-              ? <Image source={spinner} style={styles.image} />
-              : <Text style={styles.text}>LOGIN</Text>}
+            {this.state.isLoading ? (
+              <Image source={spinner} style={styles.image} />
+            ) : (
+              <Text style={styles.text}>LOGIN</Text>
+            )}
           </TouchableOpacity>
           <Animated.View
             style={[styles.circle, { transform: [{ scale: changeScale }] }]}

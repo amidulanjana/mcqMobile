@@ -33,9 +33,9 @@ class Post extends Component {
       <Content>
         <CardItem>
           <Left style={{ flex: 2 }}>
-            <Thumbnail source={profileImg} />
+            <Thumbnail source={{ uri: this.props.authorImage }} />
             <Body>
-              <Text>Amila</Text>
+              <Text>{this.props.author}</Text>
               <Text note>SoftWare Engineer</Text>
             </Body>
           </Left>

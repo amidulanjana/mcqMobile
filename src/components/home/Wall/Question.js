@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { View, Dimensions } from "react-native";
 import {
   Icon,
   Container,
@@ -15,6 +15,8 @@ import {
   ListItem,
   Right
 } from "native-base";
+
+const { width, height } = Dimensions.get("window");
 
 class Question extends Component {
   constructor(props) {
@@ -58,76 +60,30 @@ class Question extends Component {
     });
   }
 
+  renderAnswers(answers) {
+    return answers.map((answer, i) => {
+      return (
+        <ListItem button onPress={() => this.toggleSwitch1()} key={i}>
+          <CheckBox
+            checked={this.state.checkbox1}
+            onPress={() => this.toggleSwitch1()}
+          />
+          <Body>
+            <Text>{answer}</Text>
+          </Body>
+        </ListItem>
+      );
+    });
+  }
+
   render() {
     return (
-      <Card>
+      <Card style={{ height: height - 90 }}>
         <CardItem header>
-          <Text>
-            Which of the following is a subset of {"{b, c, d}"}?
-          </Text>
+          <Text>{this.props.question}</Text>
         </CardItem>
         <CardItem>
-          <Content>
-            <ListItem button onPress={() => this.toggleSwitch1()}>
-              <CheckBox
-                checked={this.state.checkbox1}
-                onPress={() => this.toggleSwitch1()}
-              />
-              <Body>
-                <Text>
-                  {"{}"}
-                </Text>
-              </Body>
-            </ListItem>
-
-            <ListItem button onPress={() => this.toggleSwitch2()}>
-              <CheckBox
-                checked={this.state.checkbox2}
-                onPress={() => this.toggleSwitch2()}
-              />
-              <Body>
-                <Text>
-                  ගණිතය යනු අපොස සාමාන්‍ය පෙළ සදහා ඇති වැදගත්ම විශයය වේ
-                </Text>
-              </Body>
-            </ListItem>
-
-            <ListItem button onPress={() => this.toggleSwitch3()}>
-              <CheckBox
-                checked={this.state.checkbox3}
-                onPress={() => this.toggleSwitch3()}
-              />
-              <Body>
-                <Text>
-                  {"{a,b,c}"}
-                </Text>
-              </Body>
-            </ListItem>
-
-            <ListItem button onPress={() => this.toggleSwitch4()}>
-              <CheckBox
-                checked={this.state.checkbox4}
-                onPress={() => this.toggleSwitch4()}
-              />
-              <Body>
-                <Text>
-                  {"{d,b,c}"}
-                </Text>
-              </Body>
-            </ListItem>
-
-            <ListItem button onPress={() => this.toggleSwitch5()}>
-              <CheckBox
-                checked={this.state.checkbox5}
-                onPress={() => this.toggleSwitch5()}
-              />
-              <Body>
-                <Text>
-                  {"{b,c}"}
-                </Text>
-              </Body>
-            </ListItem>
-          </Content>
+          <Content>{this.renderAnswers(this.props.answers)}</Content>
         </CardItem>
         {/* <CardItem footer /> */}
       </Card>

@@ -1,9 +1,10 @@
-import firebase from "firebase";
+import axios from "axios";
 import {
   EMAIL_CHANGED,
   PASSWORD_CHANGED,
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAIL
+  LOGIN_USER_FAIL,
+  ROOT_URL
 } from "./types";
 
 export const emailChanged = email => {
@@ -20,19 +21,16 @@ export const passwordChanged = password => {
   };
 };
 
-export const loginUser = ({ email, password }) => 
-  async dispatch => {
-    await firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(user => {
-        dispatch({
-          type: LOGIN_USER_SUCCESS,
-          payload: user
-        });
-      })
-      .catch(() => {
-        dispatch({ type: LOGIN_USER_FAIL });
+export const loginUser = ({ email, password }) => async dispatch => {
+  await axios
+    .post(`${ROOT_URL}/signin`, { email, password })
+    .then(user => {
+      dispatch({
+        type: LOGIN_USER_SUCCESS,
+        payload: user
       });
-  };
-
+    })
+    .catch(err => {
+      dispatch({ type: LOGIN_USER_FAIL });
+    });
+};

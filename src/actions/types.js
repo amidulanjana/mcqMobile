@@ -1,4 +1,7 @@
+export const ROOT_URL = "http://192.168.238.1:3080";
 export const EMAIL_CHANGED = "EMAIL_CHANGED";
 export const PASSWORD_CHANGED = "PASSWORD_CHANGED";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const LOGIN_USER_FAIL = "LOGIN_USER_FAIL";
+export const FETCH_QUESTIONS = "FETCH_QUESTIONS";
+export const FETCH_PAPERS = "FETCH_PAPERS";
