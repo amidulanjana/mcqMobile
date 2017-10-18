@@ -24,7 +24,7 @@ class Post extends Component {
 
   renderQuestionPaperScreen(navigation) {
     if (navigation) {
-      navigation.navigate("questionPaper");
+      navigation.navigate("questionPaper", { paperID: this.props.paperID });
     }
   }
 

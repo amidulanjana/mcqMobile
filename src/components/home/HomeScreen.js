@@ -31,6 +31,7 @@ class Home extends Component {
           imageUrl={paper.image}
           author={paper.author.name}
           authorImage={paper.author.profileImg}
+          paperID={paper._id}
         />
       );
     });

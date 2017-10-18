@@ -30,6 +30,7 @@ const styles = {
 };
 
 import Question from "./Question";
+import QuestionsAnswered from "./QuestionsAnswered";
 
 const renderPagination = (index, total, context) => {
   return (
@@ -42,20 +43,46 @@ const renderPagination = (index, total, context) => {
 };
 
 class QuestionPaperScreen extends Component {
+  jumpToSlide(value) {
+    this.swiper.scrollBy(value);
+  }
+
   renderQuestions(questions) {
-    return questions.map(question => {
-      return (
-        <View style={styles.slide} key={question._id}>
-          <ScrollView>
-            <Question question={question.question} answers={question.answers} />
-          </ScrollView>
-        </View>
-      );
-    });
+    var indents = [];
+    debugger;
+    for (var i = 0; i <= questions.length; i++) {
+      if (i == questions.length) {
+        indents.push(
+          <View style={styles.slide} key={questions.length}>
+            <ScrollView>
+              <QuestionsAnswered
+                swipe={slide => this.jumpToSlide(slide)}
+                totalQuestions={questions.length}
+              />
+            </ScrollView>
+          </View>
+        );
+      } else {
+        indents.push(
+          <View style={styles.slide} key={questions[i]._id}>
+            <ScrollView>
+              <Question
+                index={i + 1}
+                question={questions[i].question}
+                answers={questions[i].answers}
+                questionID={questions[i]._id}
+              />
+            </ScrollView>
+          </View>
+        );
+      }
+    }
+    return indents;
   }
 
   componentWillMount() {
-    this.props.getQuestions();
+    const { state } = this.props.navigation;
+    this.props.getQuestions(state.params.paperID);
   }
 
   render() {
@@ -65,6 +92,9 @@ class QuestionPaperScreen extends Component {
           style={styles.wrapper}
           renderPagination={renderPagination}
           loop={false}
+          ref={swiper => {
+            this.swiper = swiper;
+          }}
         >
           {this.renderQuestions(this.props.questions)}
         </Swiper>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Dimensions } from "react-native";
+import { View, Dimensions, AsyncStorage } from "react-native";
 import {
   Icon,
   Container,
@@ -15,66 +15,75 @@ import {
   ListItem,
   Right
 } from "native-base";
+import { connect } from "react-redux";
+import _ from "lodash";
+import { saveAnswersToArray, flagAnswers } from "../../../actions/papers";
+
+import Checkbox from "../../common/Checkbox";
 
 const { width, height } = Dimensions.get("window");
-
+const items = ["One", "Two", "Three"];
 class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checkbox1: false,
-      checkbox2: false,
-      checkbox3: false,
-      checkbox4: false,
-      checkbox5: false
+      isChecked: false,
+      answersList: []
     };
   }
 
-  toggleSwitch1() {
-    this.setState({
-      checkbox1: !this.state.checkbox1
-    });
+  componentWillMount = () => {
+    this.selectedCheckboxes = new Set();
+  };
+
+  toggleCheckbox = label => {
+    if (this.selectedCheckboxes.has(label)) {
+      this.selectedCheckboxes.delete(label);
+    } else {
+      this.selectedCheckboxes.add(label);
+    }
+  };
+
+  createCheckbox = answer => {
+    return (
+      <ListItem button key={answer}>
+        <Checkbox
+          label={answer}
+          handleCheckboxChange={this.toggleCheckbox}
+          key={answer}
+        />
+        <Body>
+          <Text>{answer}</Text>
+        </Body>
+      </ListItem>
+    );
+  };
+
+  saveAnswers() {
+    debugger;
+
+    var answerObject = {
+      questionID: this.props.questionID,
+      answers: this.selectedCheckboxes
+    };
+
+    var answerObjectArray = [];
+    answerObjectArray.push(answerObject);
+
+    var answerSet = _.reduce(
+      answerObjectArray,
+      function(obj, answer) {
+        obj[answer.questionID] = answer.answers;
+        return obj;
+      },
+      {}
+    );
+
+    this.props.saveAnswersToArray(answerSet);
+    this.props.flagAnswers(this.props.index);
   }
 
-  toggleSwitch2() {
-    this.setState({
-      checkbox2: !this.state.checkbox2
-    });
-  }
-
-  toggleSwitch3() {
-    this.setState({
-      checkbox3: !this.state.checkbox3
-    });
-  }
-
-  toggleSwitch4() {
-    this.setState({
-      checkbox4: !this.state.checkbox4
-    });
-  }
-
-  toggleSwitch5() {
-    this.setState({
-      checkbox5: !this.state.checkbox5
-    });
-  }
-
-  renderAnswers(answers) {
-    return answers.map((answer, i) => {
-      return (
-        <ListItem button onPress={() => this.toggleSwitch1()} key={i}>
-          <CheckBox
-            checked={this.state.checkbox1}
-            onPress={() => this.toggleSwitch1()}
-          />
-          <Body>
-            <Text>{answer}</Text>
-          </Body>
-        </ListItem>
-      );
-    });
-  }
+  createCheckboxes = answers => answers.map(this.createCheckbox);
 
   render() {
     return (
@@ -83,12 +92,30 @@ class Question extends Component {
           <Text>{this.props.question}</Text>
         </CardItem>
         <CardItem>
-          <Content>{this.renderAnswers(this.props.answers)}</Content>
+          <Content>{this.createCheckboxes(this.props.answers)}</Content>
         </CardItem>
-        {/* <CardItem footer /> */}
+        <CardItem footer>
+          <Button
+            small
+            primary
+            onPress={() => {
+              this.saveAnswers();
+            }}
+          >
+            <Text>Submit </Text>
+          </Button>
+        </CardItem>
       </Card>
     );
   }
 }
 
-export default Question;
+const mapStateToProps = state => {
+  return {
+    answersList: state.papers.answersList
+  };
+};
+
+export default connect(mapStateToProps, { saveAnswersToArray, flagAnswers })(
+  Question
+);
